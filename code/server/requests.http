@@ -1,0 +1,102 @@
+### User creation Admin
+
+POST http://localhost:3001/ezelectronics/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "mariorossi",
+    "name": "Mario",
+    "surname": "Rossi",
+    "password": "ezelectronics",
+    "role": "Admin"
+}
+
+### User creation Customer
+
+POST http://localhost:3001/ezelectronics/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "andreapani",
+    "name": "Andrea",
+    "surname": "Pani",
+    "password": "ezelectronics",
+    "role": "Customer"
+}
+
+########## AUTHENTICATION
+
+### Login of Admin
+
+POST http://localhost:3001/ezelectronics/sessions HTTP/1.1
+Content-type: application/json
+
+{
+    "username": "mariorossi",
+    "password": "ezelectronics"
+}
+
+### Login of Customer
+
+POST http://localhost:3001/ezelectronics/sessions HTTP/1.1
+Content-type: application/json
+
+{
+    "username": "andreapani",
+    "password": "ezelectronics"
+}
+
+########## CART APIs
+
+### GET ezelectronics/carts (Get the current unpaid cart for the customer)
+GET http://localhost:3001/ezelectronics/carts HTTP/1.1
+
+### POST ezelectronics/carts (Add a product to the cart)
+POST http://localhost:3001/ezelectronics/carts HTTP/1.1
+Content-type: application/json
+
+{
+    "model": "Dell XPS 15"
+}
+
+### PATCH ezelectronics/carts (Cart payment)
+PATCH http://localhost:3001/ezelectronics/carts HTTP/1.1
+
+### GET ezelectronics/carts/history (Get the cart history of the customer)
+GET http://localhost:3001/ezelectronics/carts/history HTTP/1.1
+
+### DELETE ezelectronics/carts/products/:model (Remove a product from the cart)
+DELETE http://localhost:3001/ezelectronics/carts/products/Dell%20XPS%2015 HTTP/1.1
+
+### DELETE ezelectronics/carts/current (Empties the current cart of the customer)
+DELETE http://localhost:3001/ezelectronics/carts/current HTTP/1.1
+
+### DELETE ezelectronics/carts (Removes all the carts in the database (Admin/Manager))
+DELETE http://localhost:3001/ezelectronics/carts HTTP/1.1
+
+### GET ezelectronics/carts/all (Get all the carts (Admin/Manager))
+GET http://localhost:3001/ezelectronics/carts/all HTTP/1.1
+
+
+
+
+
+
+########## PRODUCTS APIs
+
+### Get all products
+
+GET http://localhost:3001/ezelectronics/products HTTP/1.1
+
+### Get all products by category
+
+GET http://localhost:3001/ezelectronics/products?grouping=category&category=Smartphone HTTP/1.1
+
+### Get all products by model
+
+GET http://localhost:3001/ezelectronics/products?grouping=model&model=Iphone%2013 HTTP/1.1
+
+
+
+
+

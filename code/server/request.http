@@ -1,0 +1,157 @@
+### User creation Admin
+
+POST http://localhost:3001/ezelectronics/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "adminuser",
+    "name": "Admin",
+    "surname": "User",
+    "password": "adminpassword",
+    "role": "Admin"
+}
+
+### User creation Manager
+
+POST http://localhost:3001/ezelectronics/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "manageruser",
+    "name": "Manager",
+    "surname": "User",
+    "password": "managerpassword",
+    "role": "Manager"
+}
+
+### User creation Customer
+
+POST http://localhost:3001/ezelectronics/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "customeruser",
+    "name": "Customer",
+    "surname": "User",
+    "password": "customerpassword",
+    "role": "Customer"
+}
+
+### Admin Login
+
+POST http://localhost:3001/ezelectronics/sessions HTTP/1.1
+Content-type: application/json
+
+{
+    "username": "adminuser",
+    "password": "adminpassword"
+}
+
+### Manager Login
+
+POST http://localhost:3001/ezelectronics/sessions HTTP/1.1
+Content-type: application/json
+
+{
+    "username": "manageruser",
+    "password": "managerpassword"
+}
+
+### Customer Login
+
+POST http://localhost:3001/ezelectronics/sessions HTTP/1.1
+Content-type: application/json
+
+{
+    "username": "customeruser",
+    "password": "customerpassword"
+}
+
+
+
+
+
+########## PRODUCTS APIs
+
+### Register Products
+POST http://localhost:3001/ezelectronics/products HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer your_token_here
+
+{
+    "model": "iPhone15",
+    "category": "Smartphone",
+    "quantity": 100,
+    "details": "Latest model",
+    "sellingPrice": 999.99,
+    "arrivalDate": "2023-05-01"
+}
+
+### Register Increase in Product Quantity
+PATCH http://localhost:3001/ezelectronics/products/iPhone15 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer your_token_here
+
+{
+    "quantity": 50,
+    "changeDate": "2023-06-01"
+}
+
+### Sell Products
+PATCH http://localhost:3001/ezelectronics/products/iPhone15/sell HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer your_token_here
+
+{
+    "quantity": 2,
+    "sellingDate": "2023-06-15"
+}
+
+### Get All Products
+GET http://localhost:3001/ezelectronics/products HTTP/1.1
+Authorization: Bearer your_token_here
+
+### Get Available Products
+GET http://localhost:3001/ezelectronics/products/available HTTP/1.1
+Authorization: Bearer your_token_here
+
+### Get All Products by Category
+GET http://localhost:3001/ezelectronics/products?grouping=category&category=Smartphone HTTP/1.1
+Authorization: Bearer your_token_here
+
+### Get All Products by Model
+GET http://localhost:3001/ezelectronics/products?grouping=model&model=iPhone14 HTTP/1.1
+Authorization: Bearer your_token_here
+
+### Delete All Products
+DELETE http://localhost:3001/ezelectronics/products HTTP/1.1
+Authorization: Bearer your_token_here
+
+### Delete Product by Model
+DELETE http://localhost:3001/ezelectronics/products/iPhone14 HTTP/1.1
+Authorization: Bearer your_token_here
+
+
+########## REVIEW APIs
+
+### POST ezelectronics/reviews/:model (Add a review for a product)
+POST http://localhost:3001/ezelectronics/reviews/Iphone%2013 HTTP/1.1
+Content-type: application/json
+
+{
+    "score": 5,
+    "comment": "A very cool smartphone!"
+}
+
+### GET ezelectronics/reviews/:model (Get all reviews)
+GET http://localhost:3001/ezelectronics/reviews/Iphone%2013 HTTP/1.1
+
+### DELETE ezelectronics/reviews/:model (Delete a customer review for a product)
+DELETE http://localhost:3001/ezelectronics/reviews/Iphone%2013 HTTP/1.1
+
+### DELETE ezelectronics/reviews/:model/all (Delete all reviews for a product)
+DELETE http://localhost:3001/ezelectronics/reviews/Iphone%2013/all HTTP/1.1
+
+### DELETE ezelectronics/reviews (Delete all reviews)
+DELETE http://localhost:3001/ezelectronics/reviews HTTP/1.1
+
